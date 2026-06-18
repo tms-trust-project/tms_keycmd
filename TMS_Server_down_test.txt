@@ -1,0 +1,21 @@
+18 Jun 2026
+Investigated what happens on linux host side when TMS server is down.
+
+Server: tms-server-dev, TMS Server version 0.3.0
+Linux host: Tapis test vm2 (129.114.35.122), Rocky linux 9.8
+
+Turned up log level to DEBUG3 for sshd to see full details
+  vi /etc/ssh/sshd_config
+  tail -f /var/log/secure
+
+
+Results:
+
+  - sshd checks for local sources of public key (such as authorized_keys) before calling tms_keycmd.
+
+  - When TMS server is down there is no significant delay, the login fails very quickly.
+
+So, when users login to HPC systems but are not using TMS typically the keys will be found
+   locally and there will not be a call to TMS_Server.
+
+Also, taking TMS Server down during maintenance should not cause issues for non-TMS users.
