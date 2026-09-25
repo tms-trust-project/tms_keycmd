@@ -1,6 +1,6 @@
 # tms_keycmd
 
-SSH AuthorizedKeysCommand for Trust Manager System (TMS)
+SSH AuthorizedKeysCommand for Trust Management System (TMS)
 
 ## Program tms_keycmd
 
